@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/susto.png-6b023d1f2e60129c3e4063c906e994b1.stex"
+path="res://.import/susto.png-755e5e0669b7c9028649b6ae5bffebcc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/passaro/susto.png"
-dest_files=[ "res://.import/susto.png-6b023d1f2e60129c3e4063c906e994b1.stex" ]
+source_file="res://assets/passaro/susto/susto.png"
+dest_files=[ "res://.import/susto.png-755e5e0669b7c9028649b6ae5bffebcc.stex" ]
 
 [params]
 
