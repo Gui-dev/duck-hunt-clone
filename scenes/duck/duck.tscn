@@ -49,6 +49,7 @@ fall = 1
 [node name="texture" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "up"
+frame = 1
 playing = true
 
 [node name="collison" type="CollisionShape2D" parent="."]
@@ -63,6 +64,10 @@ autostart = true
 [node name="dead_timer" type="Timer" parent="."]
 wait_time = 0.2
 
+[node name="notifier" type="VisibilityNotifier2D" parent="."]
+scale = Vector2( 3.625, 4.375 )
+
 [connection signal="timeout" from="movement_timer" to="." method="_on_movement_timer_timeout"]
 [connection signal="timeout" from="animation_timer" to="." method="_on_animation_timer_timeout"]
 [connection signal="timeout" from="dead_timer" to="." method="_on_dead_timer_timeout"]
+[connection signal="screen_exited" from="notifier" to="." method="_on_notifier_screen_exited"]
