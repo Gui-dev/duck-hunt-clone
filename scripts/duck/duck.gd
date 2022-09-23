@@ -52,7 +52,3 @@ func _on_dead_timer_timeout() -> void:
   texture.animation = 'dead'
   fall = -1
   side = 0
-
-
-func _on_notifier_screen_exited() -> void:
-  queue_free()
