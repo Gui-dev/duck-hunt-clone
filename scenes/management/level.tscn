@@ -89,17 +89,16 @@ z_index = 1
 one_shot = true
 
 [node name="spawn_new_ducks" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 8.0
 one_shot = true
 
 [node name="TopCollision" parent="." instance=ExtResource( 3 )]
-position = Vector2( 381, -53 )
+position = Vector2( 381, -73 )
 
 [node name="BottomCollision" parent="." instance=ExtResource( 6 )]
-position = Vector2( 380, 753 )
+position = Vector2( 380, 735 )
 
 [node name="dog_catches_duck" type="Sprite" parent="."]
-visible = false
 position = Vector2( 389, 547 )
 texture = ExtResource( 8 )
 

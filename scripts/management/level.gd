@@ -7,6 +7,8 @@ var flyaway: int = 0
 var captured_ducks = 0
 onready var aim: Area2D = $Aim
 onready var spawn_ducks: Timer = $spawn_ducks
+onready var spawn_new_ducks: Timer = $spawn_new_ducks
+onready var animation: AnimationPlayer = $animation
 
 
 func _ready() -> void:
@@ -26,6 +28,18 @@ func duck_generator() -> void:
   get_tree().root.call_deferred('add_child', duck)
 
 
+func update_match() -> void:
+  print(ducks_on_screen)
+  if ducks_on_screen == 0:
+    spawn_new_ducks.start()
+    if flyaway == 1:
+      animation.play('dog_smiling')
+      flyaway = 0
+    else:
+      animation.play('duck_capture')
+      
+
+
 func _on_spawn_ducks_timeout() -> void:
   ducks_on_screen = int(rand_range(1, 6))
 
@@ -38,12 +52,12 @@ func _on_spawn_new_ducks_timeout() -> void:
 
 
 func _on_top_collision_body_entered(body: Node) -> void:
-  if body.name == 'Duck':
-    flyaway = 1
-    ducks_on_screen -= 1
+  flyaway = 1
+  ducks_on_screen -= 1
+  update_match()
 
 
 func _on_bottom_collision_body_entered(body: Node) -> void:
-  if body.name == 'Duck':
-    captured_ducks += 1
-    ducks_on_screen -= 1
+  captured_ducks += 1
+  ducks_on_screen -= 1
+  update_match()
