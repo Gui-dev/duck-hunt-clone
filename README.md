@@ -1,6 +1,6 @@
-<!--# Flappy Bird
+# Duck Hunt Clone
 
-Flappy Bird Clone is a clone of the mobile game, created to learn game development.
+Duck Hunt is a classic NES console game, created to learn game development.
 
 ## Tecnologias
 
@@ -11,19 +11,19 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 ## Screenshot
 
 <p align="center">
-  <img alt="Flappy Bird Clone" src=".screens/image_1.png" width="49%">
-  <img alt="Flappt Bird Clone" src=".screens/image_2.png" width="49%">
+  <img alt="Duck Hunt" src=".screens/game.png" width="100%">
+  <img alt="Duck Hunt" src=".screens/game_2.png" width="100%">
 </p>
 
 ## Features
 
-- [x] Avoid obstacles (collision)
+- [] Avoid obstacles (collision)
 - [x] Animation on walk/idle
-- [] Attack with animation
-- [] Player & monster stats
+- [x] Attack with animation
+- [x] Player & monster stats
 - [] Monsters tries to reach the player
 - [] Monsters attacks
-- [x] Player dies
+- [] Player dies
 - [] UI bars
 - [] Monsters wander around when player's near
 - [ ] A-Star algorithm when monsters trying to reach the player
@@ -31,4 +31,4 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - [] Animation on attack
 - [] Stats bars on monsters
 - [] Ranged monsters and weapons
--->
+
