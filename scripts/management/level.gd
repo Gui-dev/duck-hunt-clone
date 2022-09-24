@@ -10,6 +10,11 @@ onready var spawn_ducks: Timer = $spawn_ducks
 onready var spawn_new_ducks: Timer = $spawn_new_ducks
 onready var animation: AnimationPlayer = $animation
 onready var score: Label = $hud/score
+onready var dog_captured_sfx: AudioStreamPlayer2D = $dog_captured_sfx
+onready var dog_smiling_sfx: AudioStreamPlayer2D = $dog_smiling_sfx
+onready var dead_duck_sfx: AudioStreamPlayer2D = $dead_duck_sfx
+onready var duck_flyaway_sfx: AudioStreamPlayer2D = $duck_flyaway_sfx
+onready var new_match_sfx: AudioStreamPlayer2D = $new_match_sfx
 
 
 func _ready() -> void:
@@ -33,10 +38,12 @@ func update_match() -> void:
     spawn_new_ducks.start()
     if flyaway == 1:
       animation.play('dog_smiling')
+      dog_smiling_sfx.play()
       flyaway = 0
       captured_ducks = 0
     else:
       animation.play('duck_capture')
+      dog_captured_sfx.play()
       
 
 
@@ -48,16 +55,19 @@ func _on_spawn_ducks_timeout() -> void:
 
 
 func _on_spawn_new_ducks_timeout() -> void:
+  new_match_sfx.play()
   $spawn_ducks.start()
 
 
 func _on_top_collision_body_entered(_body: Node) -> void:
+  duck_flyaway_sfx.play()
   flyaway = 1
   ducks_on_screen -= 1
   update_match()
 
 
 func _on_bottom_collision_body_entered(_body: Node) -> void:
+  dead_duck_sfx.play()
   captured_ducks += 1
   ducks_on_screen -= 1
   update_match()
