@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/ui/cenariotras.png" type="Texture" id=1]
 [ext_resource path="res://assets/ui/cenariofrente.png" type="Texture" id=2]
@@ -8,6 +8,13 @@
 [ext_resource path="res://scenes/prefabs/bottom_collision.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/cao/rindo.png" type="Texture" id=7]
 [ext_resource path="res://assets/cao/captura.png" type="Texture" id=8]
+[ext_resource path="res://assets/ui/hud.png" type="Texture" id=9]
+[ext_resource path="res://assets/font/PressStart2P.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://assets/sons/cao_captura.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/sons/round.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/sons/cao_rindo.wav" type="AudioStream" id=13]
+[ext_resource path="res://assets/sons/flyaway.wav" type="AudioStream" id=14]
+[ext_resource path="res://assets/sons/colidiu.wav" type="AudioStream" id=15]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -68,6 +75,10 @@ tracks/0/keys = {
 "values": [ Vector2( 389, 547 ), Vector2( 389, 436 ), Vector2( 389, 410 ), Vector2( 389, 460 ), Vector2( 389, 510 ), Vector2( 389, 547 ) ]
 }
 
+[sub_resource type="DynamicFont" id=4]
+size = 19
+font_data = ExtResource( 10 )
+
 [node name="Level" type="Node2D"]
 script = ExtResource( 5 )
 
@@ -110,6 +121,38 @@ texture = ExtResource( 7 )
 anims/RESET = SubResource( 1 )
 anims/dog_smiling = SubResource( 3 )
 anims/duck_capture = SubResource( 2 )
+
+[node name="hud" type="CanvasLayer" parent="."]
+
+[node name="texture" type="Sprite" parent="hud"]
+position = Vector2( 385, 630 )
+texture = ExtResource( 9 )
+
+[node name="score" type="Label" parent="hud"]
+margin_left = 353.0
+margin_top = 621.0
+margin_right = 414.0
+margin_bottom = 662.0
+custom_fonts/font = SubResource( 4 )
+text = "0
+"
+align = 1
+valign = 1
+
+[node name="dog_captured_sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 11 )
+
+[node name="dog_smiling_sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 13 )
+
+[node name="dead_duck_sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 15 )
+
+[node name="duck_flyaway_sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 14 )
+
+[node name="new_match_sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 12 )
 
 [connection signal="timeout" from="spawn_ducks" to="." method="_on_spawn_ducks_timeout"]
 [connection signal="timeout" from="spawn_new_ducks" to="." method="_on_spawn_new_ducks_timeout"]

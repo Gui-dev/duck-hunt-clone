@@ -4,11 +4,12 @@ class_name Level
 var ducks_on_screen: int
 var Duck: PackedScene = preload('res://scenes/duck/duck.tscn')
 var flyaway: int = 0
-var captured_ducks = 0
+var captured_ducks: int = 0
 onready var aim: Area2D = $Aim
 onready var spawn_ducks: Timer = $spawn_ducks
 onready var spawn_new_ducks: Timer = $spawn_new_ducks
 onready var animation: AnimationPlayer = $animation
+onready var score: Label = $hud/score
 
 
 func _ready() -> void:
@@ -17,8 +18,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
   aim.position = get_local_mouse_position()
-  print('SAIU: ', flyaway)
-  print('CAIU: ', captured_ducks)
+  score.text = str(captured_ducks)
 
 
 func duck_generator() -> void:
@@ -29,12 +29,12 @@ func duck_generator() -> void:
 
 
 func update_match() -> void:
-  print(ducks_on_screen)
   if ducks_on_screen == 0:
     spawn_new_ducks.start()
     if flyaway == 1:
       animation.play('dog_smiling')
       flyaway = 0
+      captured_ducks = 0
     else:
       animation.play('duck_capture')
       
@@ -51,13 +51,13 @@ func _on_spawn_new_ducks_timeout() -> void:
   $spawn_ducks.start()
 
 
-func _on_top_collision_body_entered(body: Node) -> void:
+func _on_top_collision_body_entered(_body: Node) -> void:
   flyaway = 1
   ducks_on_screen -= 1
   update_match()
 
 
-func _on_bottom_collision_body_entered(body: Node) -> void:
+func _on_bottom_collision_body_entered(_body: Node) -> void:
   captured_ducks += 1
   ducks_on_screen -= 1
   update_match()
